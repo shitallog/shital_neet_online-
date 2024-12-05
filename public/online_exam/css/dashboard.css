@@ -1,0 +1,231 @@
+/* Reset default margin, padding, and outline */
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+/* Set body font and make content more fluid */
+body {
+  font-family: Verdana, sans-serif;
+  padding: 10px;
+}
+
+/* Main container with fluid width */
+.phpcoding {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  background: #0fac5d;
+  padding: 0 15px;
+}
+
+/* Header with a responsive image */
+.headeroption {
+  margin-top: 15px;
+  text-align: center;
+  background: #444 url(/online_exam/images/NEET-25.png) no-repeat center;
+  background-size: cover;
+  border-bottom: 2px solid #444444;
+  height: 150px;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* General success and error message styling */
+.success {
+  color: green;
+}
+.error, .empty, .disable {
+  color: red;
+}
+
+/* Header and footer text styling */
+.headeroption h2, .footeroption h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Main content area */
+.maincontent {
+  font-size: 18px;
+  padding: 20px;
+  min-height: 430px;
+  background-color: #fff;
+}
+
+/* Paragraph styling */
+p {
+  margin: 0;
+}
+
+/* Responsive input fields */
+input[type="text"], input[type="password"] {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Submit button */
+input[type="submit"] {
+  cursor: pointer;
+  font-size: 15px;
+  padding: 5px 10px;
+}
+
+/* Table styling */
+.tblone {
+  width: 100%;
+  border: 1px solid #fff;
+  margin: 20px 0;
+}
+
+.tblone td {
+  padding: 5px 10px;
+  text-align: center;
+}
+
+table.tblone tr:nth-child(odd) {
+  background: #fff;
+  height: 30px;
+}
+
+table.tblone tr:nth-child(even) {
+  background: #f1f1f1;
+  height: 30px;
+}
+
+/* Main container styling */
+.main {
+  background: #fff;
+  border: 1px solid #999;
+  margin-top: 10px;
+  padding: 15px;
+  width: 100%;
+
+}
+
+/* Main heading */
+.main h1 {
+  background: #f4f4f4;
+  box-shadow: 2px 2px 0 1px #999;
+  color: #010002;
+  margin: 10px auto 25px;
+  padding: 4px;
+  text-align: center;
+  width: 22%;
+  max-width: 856px;
+}
+
+/* Menu styles */
+.menu {
+  overflow: hidden;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu ul li {
+  display: inline-block;
+}
+
+.menu ul li a {
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  font-size: 18px;
+  color: #5f0a1f;
+  display: block;
+  margin: 0 5px 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.menu ul li a:hover {
+  border: 1px solid #200404;
+  color: #c42727;
+}
+
+/* Segment boxes */
+.segment {
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  height:700px;
+}
+
+.segment img {
+  height: 200px;
+  margin-left: 4px;
+}
+
+.segment h2 {
+  border-bottom: 1px solid #ddd;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.segment ul li a {
+  border: 1px solid #3399ff;
+  border-radius: 3px;
+  color: #3399ff;
+  display: block;
+  width: 200px;
+  margin-bottom: 5px;
+  padding: 5px 80px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.segment ul li a:hover {
+  border: 1px solid #030303;
+  color: #b61313;
+}
+
+/* Test section */
+.test, .viewans {
+  border: 1px solid #f3f3f3;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 20px;
+}
+
+.starttest {
+  border: 1px solid #f4f4f4;
+  max-width: 100%;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* Responsive fonts for smaller screens */
+@media screen and (max-width: 768px) {
+  .menu ul li {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .headeroption {
+    height: auto;
+    padding: 20px;
+  }
+
+  .main h1 {
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .segment ul li a {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 100%;
+  }
+}

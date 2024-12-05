@@ -1,0 +1,9 @@
+Login using Super Admin Credential -
+Username - superadmin
+Password - 12345678
+Create Admin
+Create Role
+Assign Permission to Roles
+Assign Multiple Role to an admin
+Check by login with the new credentials.
+If you've not enough permission to do any task, you'll get a warning message.

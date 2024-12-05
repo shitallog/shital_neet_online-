@@ -1,0 +1,48 @@
+*   Trying 104.18.40.97:443...
+* Connected to api.phonepe.com (104.18.40.97) port 443
+* ALPN: curl offers h2,http/1.1
+*  CAfile: C:\xampp\apache\bin\curl-ca-bundle.crt
+*  CApath: none
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.phonepe.com
+*  start date: Jul  8 17:37:49 2024 GMT
+*  expire date: Jul  8 17:37:49 2025 GMT
+*  subjectAltName: host "api.phonepe.com" matched cert's "*.phonepe.com"
+*  issuer: C=US; ST=Arizona; L=Scottsdale; O=GoDaddy.com, Inc.; OU=http://certs.godaddy.com/repository/; CN=Go Daddy Secure Certificate Authority - G2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://api.phonepe.com/apis/hermes/pg/v1/pay
+* [HTTP/2] [1] [:method: POST]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: api.phonepe.com]
+* [HTTP/2] [1] [:path: /apis/hermes/pg/v1/pay]
+* [HTTP/2] [1] [accept: */*]
+* [HTTP/2] [1] [content-type: application/json]
+* [HTTP/2] [1] [x-verify: e03e19cfbd3642ae497267005f08d02e9ae2a17b04f7f924a349b8e8b0c3b576###]
+* [HTTP/2] [1] [content-length: 430]
+> POST /apis/hermes/pg/v1/pay HTTP/2
+Host: api.phonepe.com
+Accept: */*
+Content-Type:application/json
+X-VERIFY:e03e19cfbd3642ae497267005f08d02e9ae2a17b04f7f924a349b8e8b0c3b576###
+Content-Length: 430
+
+* old SSL session ID is stale, removing
+< HTTP/2 400 
+< date: Thu, 14 Nov 2024 07:43:19 GMT
+< content-length: 30
+< x-requested-method: POST
+< x-response-backend-time: 1731570199746
+< x-request-backend-time: 1731570199746
+< x-api-exception-code: CK015
+< x-frame-options: DENY
+< x-content-type-options: nosniff
+< x-xss-protection: 1; mode=block
+< strict-transport-security: max-age=31536000; preload
+< cf-cache-status: DYNAMIC
+< server: cloudflare
+< cf-ray: 8e255eb458d6836f-BOM
+< 
+* Connection #0 to host api.phonepe.com left intact

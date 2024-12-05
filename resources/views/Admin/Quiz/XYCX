@@ -1,0 +1,232 @@
+@extends('backend.layouts.master')
+
+@section('title')
+    {{ __('Admins - Admin Panel') }}
+@endsection
+
+@section('styles')
+    <!-- Start datatable css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+
+<style>
+
+.math-field {
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    
+
+}
+
+.math-field:focus {
+    border-color: #66afe9;
+    outline: none;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+    </style>
+
+    @endsection
+
+
+@section('admin-content')
+
+<!-- page title area start -->
+<div class="page-title-area">
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <div class="breadcrumbs-area clearfix">
+                <h4 class="page-title pull-left">{{ __('Admins') }}</h4>
+                <ul class="breadcrumbs pull-left">
+                    <li><a href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a></li>
+                    <li><span>{{ __('All Admins') }}</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6 clearfix">
+            @include('backend.layouts.partials.logout')
+        </div>
+    </div>
+</div>
+<!-- page title area end -->
+
+<div class="main-content-inner">
+<div class="row">
+    <div class="col-12 mt-5">
+    <div class="card">
+    <div class="container">
+     
+    <div class="row">
+    <div class="col-12 mt-5">
+    <div class="card">
+    <div class="container">
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <h1 class="text-center">Enter Question Details</h1>
+   <form action="{{ route('questions.add') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+  
+     <input type="hidden" name="quizId" value="{{ $quizId }}">
+    <input type="hidden" name="totalQuestions" value="{{ $totalQuestions }}">
+  
+    <fieldset>
+        @for($i = 1; $i <= $totalQuestions; $i++)
+            <div class="question-section">
+             
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="qns{{ $i }}">Question {{ $i }}:</label>
+                    <div class="col-md-12">
+                    <textarea name="qns{{ $i }}" id="qns{{ $i }}" class="form-control" placeholder="Write question number {{ $i }} here..." required rows="3" cols="10" id="editor1" name="editor1" rows="10" data-sample-short>
+
+</textarea>
+                    
+                    </div>
+                </div>
+                <!-- Image Upload Option -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="img{{ $i }}">Upload Image for Question {{ $i }}:</label>
+                    <div class="col-md-12">
+                        <input type="file" name="img{{ $i }}" id="img{{ $i }}" class="form-control" accept="image/*">
+                    </div>
+                </div>
+                <!-- Math Field for Equations -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="math_field">Mathematical Equation for Question:</label>
+                    <div class="col-md-12">
+                        <math-field style="height: 100px;" id="math_field" name="math_field" contenteditable="true" class="form-control"></math-field>
+                        <input type="hidden" id="math_field" name="math_field">
+                    </div>
+                </div>
+                <!-- Solution Field -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="solution{{ $i }}">Solution for Question {{ $i }}:</label>
+                    <div class="col-md-12">
+                        <textarea rows="4" cols="5" name="solution{{ $i }}" id="solution{{ $i }}" class="form-control" placeholder="Write solution for question number {{ $i }} here..." required></textarea>
+                    </div>
+                </div>
+                <!-- Math Field for Solution Equations -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="math_field_solution">Mathematical Equation for Solution:</label>
+                    <div class="col-md-12">
+                        <math-field style="height: 100px;" id="math_field_solution" name="math_field_solution" contenteditable="true" class="form-control"></math-field>
+                        <input type="hidden" id="math_field_solution" name="math_field_solution">
+
+                    </div>
+                </div>
+                @for($j = 1; $j <= 4; $j++)
+                    <div class="form-group">
+                        <label class="col-md-12 control-label" for="{{ $i }}{{ $j }}">Option {{ $j }}:</label>
+                        <div class="col-md-12">
+                            <input id="{{ $i }}{{ $j }}" name="{{ $i }}{{ $j }}" placeholder="Enter option {{ chr(96 + $j) }}" class="form-control input-md" type="text" required>
+                        </div>
+                    </div>
+                    <!-- Image Upload Option for Each Answer Option -->
+                    <div class="form-group">
+                        <label class="col-md-12 control-label" for="optImg{{ $i }}{{ $j }}">Upload Image for Option {{ chr(96 + $j) }}:</label>
+                        <div class="col-md-12">
+                            <input type="file" name="optImg{{ $i }}{{ $j }}" id="optImg{{ $i }}{{ $j }}" class="form-control" accept="image/*">
+                        </div>
+                    </div>
+                @endfor
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="ans{{ $i }}">Correct Answer:</label>
+                    <div class="col-md-12">
+                        <select id="ans{{ $i }}" name="ans{{ $i }}" class="form-control input-md" required>
+                            <option value="">Select answer for question {{ $i }}</option>
+                            <option value="a">Option a</option>
+                            <option value="b">Option b</option>
+                            <option value="c">Option c</option>
+                            <option value="d">Option d</option>
+                        </select>
+                    </div>
+                </div>
+                <hr />
+            </div>
+        @endfor
+        <div class="form-group text-center" >
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-primary" value="Submit"/>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+    </div>
+    </div>
+</div>
+</div>
+
+
+    </div>
+        </div>
+        <!-- data table end -->
+    </div>
+</div>
+</div>
+@endsection
+
+@section('scripts')
+
+
+
+
+     <!-- Start datatable js -->
+     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
+     <script src="https://unpkg.com/mathlive/dist/mathlive.min.js"></script>
+
+
+     <script>
+ if ($('#dataTable').length) {
+            $('#dataTable').DataTable({
+                responsive: true
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const formulaField = document.getElementById('formula');
+        const formulaSolutionField = document.getElementById('formulaSolution');
+
+        const mathFieldInput = document.getElementById('math_field');
+        const mathFieldSolutionInput = document.getElementById('math_field_solution');
+
+        // Update the hidden input for question formula
+        formulaField.addEventListener('input', () => {
+            mathFieldInput.value = formulaField.value;
+        });
+
+        // Update the hidden input for solution formula
+        formulaSolutionField.addEventListener('input', () => {
+            mathFieldSolutionInput.value = formulaSolutionField.value;
+        });
+    });
+
+     </script>
+     
+
+  
+
+      
+
+@endsection
